@@ -22,7 +22,7 @@ train_loss_m = [1.9316, 0.9606, 0.9208, 0.8945, 0.8602, 0.8566, 0.7841, 0.7471, 
 
 # 测试损失数据（保留但不绘制2a）
 test_loss_t = [1.9043, 1.2758, 1.2984, 1.3238, 1.3411, 1.3574, 1.3814, 1.3990, 1.4235, 1.4407,
-               1.4577, 1.4822, 1.4996, 1.5232, 1.5330, 1.5627, 1.5746, 1.5843, 1.6078, 1.6308]
+               1.4577, 1.4822, 1.4996, 1.5232, 1.5330, 1.5627, 1.5746, 1.5843, 1.6078, 1.6308,]
 test_loss_a = [2.0881, 0.8402, 0.8187, 0.8154, 0.8156, 0.8163, 0.8168, 0.8179, 0.8177, 0.8185,
                0.8193, 0.8199, 0.8218, 0.8220, 0.8224, 0.8227, 0.8233, 0.8236, 0.8250, 0.8262]
 test_loss_v = [1.8992, 1.1212, 1.1110, 1.1176, 1.1409, 1.1582, 1.1657, 1.1807, 1.1976, 1.2053,
@@ -40,9 +40,6 @@ test_acc_v = [0.2275, 0.6708, 0.6781, 0.6755, 0.6732, 0.6727, 0.6729, 0.6734, 0.
 test_acc_m = [0.1978, 0.7107, 0.7171, 0.7206, 0.7220, 0.7223, 0.7211, 0.7208, 0.7194, 0.7202,
               0.7197, 0.7195, 0.7187, 0.7199, 0.7204, 0.7204, 0.7201, 0.7209, 0.7209, 0.7197]
 
-# LFMIM模型在不同情绪类别上的F1分数（假设数据，需替换为真实值）
-emotions = ['happiness', 'sadness', 'fear', 'anger', 'surprise', 'disgust', 'neutrality']
-lfmim_f1_scores = [0.7960, 0.7770, 0.7179, 0.7649, 0.6694, 0.4850, 0.0032]  # 示例数据
 
 
 # 定义绘图函数
@@ -80,10 +77,9 @@ def plot_emotion_f1_scores():
 
 
 # 绘制并保存图表
-def save_figure(fig_title, x_label, y_label, plot_func, filename):
+def save_figure( x_label, y_label, plot_func, filename):
     plt.figure(figsize=(8, 6))
     plot_func()
-    plt.title(fig_title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.grid(True, linestyle='--', alpha=0.7)
@@ -94,7 +90,6 @@ def save_figure(fig_title, x_label, y_label, plot_func, filename):
 
 # 图1: (a) Training and Test Loss by Modality
 save_figure(
-    'Training and Test Loss by Modality',
     'Epochs',
     'Loss',
     plot_training_test_loss,
@@ -103,21 +98,12 @@ save_figure(
 
 # 图2: (b) Overall Emotion Recognition Accuracy (与1b相同)
 save_figure(
-    'Overall Emotion Recognition Accuracy',
     'Epochs',
     'Accuracy',
     plot_modality_accuracy,
     'figure1b'
 )
 
-# 图3: (b) Overall Test Accuracy by Modality (移除2a后，原2b改为新图2b，但需求要求与1b相同，故实际保留3图)
-# 图4: (c) F1 Scores of LFMIM Model on Different Emotions
-save_figure(
-    'LFMIM Model F1 Scores by Emotion Category',
-    'Emotion Category',
-    'F1 Score',
-    plot_emotion_f1_scores,
-    'figure2c'
-)
+
 
 print("All figures saved to 'image' folder.")
