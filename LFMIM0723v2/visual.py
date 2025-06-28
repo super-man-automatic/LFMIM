@@ -65,15 +65,6 @@ def plot_modality_accuracy():
     plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.ylim(bottom=0, top=1)
 
-def plot_emotion_f1_scores():
-    x = np.arange(len(emotions))
-    width = 0.4
-    plt.bar(x, lfmim_f1_scores, width, color=['#00A1FF', '#5ed935', '#f8ba00', '#ff2501', '#d31876', '#919292', '#58538b'])
-    plt.xticks(x, emotions, rotation=45, ha='right')
-    plt.gca().spines['top'].set_visible(False)
-    plt.gca().spines['right'].set_visible(False)
-    plt.gca().spines['left'].set_visible(False)
-    plt.grid(True, linestyle='--', alpha=0.7, axis='y')
 
 
 # 绘制并保存图表
