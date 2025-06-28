@@ -30,6 +30,27 @@ test_loss_v = [1.8992, 1.1212, 1.1110, 1.1176, 1.1409, 1.1582, 1.1657, 1.1807, 1
 test_loss_m = [1.9322, 0.7955, 0.7761, 0.7686, 0.7627, 0.7621, 0.7616, 0.7605, 0.7633, 0.7646,
                0.7670, 0.7683, 0.7720, 0.7768, 0.7772, 0.7828, 0.7874, 0.7905, 0.7954, 0.7998]
 
+# 训练准确率数据
+train_acc_t = [
+    0.2968, 0.6551, 0.6553, 0.6569, 0.6581, 0.6602, 0.6609, 0.6610, 0.6619, 0.6621,
+    0.6623, 0.6628, 0.6631, 0.6636, 0.6640, 0.6643, 0.6648, 0.6650, 0.6652, 0.6656
+]
+
+train_acc_a = [
+    0.0649, 0.7105, 0.7190, 0.7214, 0.7219, 0.7225, 0.7207, 0.7214, 0.7216, 0.7221,
+    0.7214, 0.7225, 0.7218, 0.7220, 0.7221, 0.7214, 0.7223, 0.7221, 0.7220, 0.7218
+]
+
+train_acc_v = [
+    0.0216, 0.6734, 0.6753, 0.6734, 0.6722, 0.6734, 0.6694, 0.6708, 0.6731, 0.6717,
+    0.6729, 0.6717, 0.6734, 0.6727, 0.6724, 0.6717, 0.6734, 0.6724, 0.6721, 0.6717
+]
+
+train_acc_m = [
+    0.1537, 0.7110, 0.7183, 0.7220, 0.7218, 0.7223, 0.7206, 0.7211, 0.7202, 0.7208,
+    0.7202, 0.7208, 0.7199, 0.7204, 0.7195, 0.7183, 0.7195, 0.7197, 0.7197, 0.7194
+]
+
 # 测试准确率数据
 test_acc_t = [0.2477, 0.6616, 0.6621, 0.6623, 0.6631, 0.6650, 0.6643, 0.6640, 0.6628, 0.6624,
               0.6642, 0.6636, 0.6640, 0.6623, 0.6624, 0.6619, 0.6593, 0.6610, 0.6591, 0.6586]
@@ -57,10 +78,16 @@ def plot_training_test_loss():
     plt.ylim(bottom=0)
 
 def plot_modality_accuracy():
-    plt.plot(epochs, test_acc_t, label='Text', color='#00A1FF', linewidth=2)
-    plt.plot(epochs, test_acc_a, label='Audio', color='#5ed935', linewidth=2)
-    plt.plot(epochs, test_acc_v, label='Visual', color='#f8ba00', linewidth=2)
-    plt.plot(epochs, test_acc_m, label='Multimodal', color='#ff2501', linewidth=2)
+    # 测试集
+    plt.plot(epochs, test_acc_t, label='Test-Text', color='#00A1FF', linewidth=2, linestyle='-')
+    plt.plot(epochs, test_acc_a, label='Test-Audio', color='#5ed935', linewidth=2, linestyle='-')
+    plt.plot(epochs, test_acc_v, label='Test-Visual', color='#f8ba00', linewidth=2, linestyle='-')
+    plt.plot(epochs, test_acc_m, label='Test-Multimodal', color='#ff2501', linewidth=2, linestyle='-')
+    # 训练集
+    plt.plot(epochs, train_acc_t, label='Train-Text', color='#00A1FF', linewidth=2, linestyle='--')
+    plt.plot(epochs, train_acc_a, label='Train-Audio', color='#5ed935', linewidth=2, linestyle='--')
+    plt.plot(epochs, train_acc_v, label='Train-Visual', color='#f8ba00', linewidth=2, linestyle='--')
+    plt.plot(epochs, train_acc_m, label='Train-Multimodal', color='#ff2501', linewidth=2, linestyle='--')
     plt.legend(loc='lower right')
     plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
     plt.ylim(bottom=0, top=1)
